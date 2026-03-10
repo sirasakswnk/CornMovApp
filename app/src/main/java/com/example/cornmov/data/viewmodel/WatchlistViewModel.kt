@@ -52,29 +52,35 @@ class WatchlistViewModel : ViewModel() {
     }
 
     fun saveReview(movieId: Int, rating: Float, review: String) {
-        val uid  = auth.currentUser?.uid ?: return
-        val name = auth.currentUser?.displayName
-            ?: auth.currentUser?.email?.substringBefore("@")
-            ?: "Anonymous"
+        val uid = auth.currentUser?.uid ?: return
 
+        // ดึง userName จาก Firestore
+        db.collection("users").document(uid).get()
+            .addOnSuccessListener { userDoc ->
+                val name = userDoc.getString("name")?.takeIf { it.isNotBlank() }
+                    ?: auth.currentUser?.displayName?.takeIf { it.isNotBlank() }
+                    ?: auth.currentUser?.email?.substringBefore("@")
+                    ?: "Anonymous"
 
-        db.collection("movies").document(movieId.toString())
-            .collection("reviews").document(uid)
-            .set(mapOf(
-                "uid"       to uid,
-                "userName"  to name,
-                "rating"    to rating.toInt(),
-                "comment"   to review,
-                "createdAt" to System.currentTimeMillis(),
-                "likes"     to emptyList<String>()
-            ))
+                //บันทึกลง movies/{movieId}/reviews/{uid}
+                db.collection("movies").document(movieId.toString())
+                    .collection("reviews").document(uid)
+                    .set(mapOf(
+                        "uid"       to uid,
+                        "userName"  to name,
+                        "rating"    to rating.toInt(),  // ✅ เป็น Int เหมือน ReviewViewModel
+                        "comment"   to review,
+                        "createdAt" to System.currentTimeMillis(),
+                        "likes"     to emptyList<String>()
+                    ))
 
-        // อัปเดต personalRating ใน watchlist เพื่อแสดงดาวบน card
-        db.collection("users").document(uid)
-            .collection("watchlist").document(movieId.toString())
-            .update(mapOf(
-                "personalRating" to rating,
-                "reviewText"     to review
-            ))
+                // ✅ บันทึกลง watchlist
+                db.collection("users").document(uid)
+                    .collection("watchlist").document(movieId.toString())
+                    .update(mapOf(
+                        "personalRating" to rating,
+                        "reviewText"     to review
+                    ))
+            }
     }
 }

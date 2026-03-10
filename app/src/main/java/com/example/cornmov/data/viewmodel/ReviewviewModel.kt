@@ -106,14 +106,14 @@ class ReviewViewModel : ViewModel() {
                     .addOnSuccessListener {
                         db.collection("users").document(uid)
                             .collection("watchlist").document(movieId.toString())
-                            .update(mapOf(
-                                "personalRating" to rating.toFloat(),
-                                "reviewText"     to comment
-                            ))
+                            .set(
+                                mapOf(
+                                    "personalRating" to rating.toFloat(),
+                                    "reviewText"     to comment
+                                ),
+                                com.google.firebase.firestore.SetOptions.merge()
+                            )
                         _submitState.value = ReviewSubmitState.Success
-                    }
-                    .addOnFailureListener {
-                        _submitState.value = ReviewSubmitState.Error(it.message ?: "Error")
                     }
             }
             .addOnFailureListener {
