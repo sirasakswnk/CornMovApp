@@ -41,7 +41,6 @@ class ProfileViewModel : ViewModel() {
 
     private fun fetchArchivesAndStats() {
         val uid = auth.currentUser?.uid ?: return
-
         // ดึง Watchlist เฉพาะที่ดูจบแล้ว (status == "Done")
         db.collection("users").document(uid).collection("watchlist")
             .whereEqualTo("status", "Done")
@@ -51,9 +50,8 @@ class ProfileViewModel : ViewModel() {
                 // แปลงข้อมูลเป็นลิสต์
                 val doneList = snapshot.documents.mapNotNull { it.toObject(WatchSession::class.java) }
 
-                // นับจำนวนแยกประเภท
+                // นับจำนวน
                 _moviesWatchedCount.value = doneList.count { it.type == "Movie" }
-                _seriesWatchedCount.value = doneList.count { it.type == "Series" }
 
                 // เรียงลำดับจากเพิ่มล่าสุด และเก็บเข้า State สำหรับโชว์หน้า Archive
                 _archives.value = doneList.sortedByDescending { it.addedAt.seconds }

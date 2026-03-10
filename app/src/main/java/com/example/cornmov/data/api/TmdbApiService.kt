@@ -63,7 +63,7 @@ data class MovieResponse(
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("release_date") val releaseDate: String = "",
-    @SerializedName("genre_ids") val genreIds: List<Int> = emptyList()  // ✅ เพิ่ม
+    @SerializedName("genre_ids") val genreIds: List<Int> = emptyList()
 )
 
 data class MovieDetailResponse(
