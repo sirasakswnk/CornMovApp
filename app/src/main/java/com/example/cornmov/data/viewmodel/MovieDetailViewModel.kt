@@ -72,7 +72,6 @@ class MovieDetailViewModel : ViewModel() {
             )
             ref.set(item).addOnSuccessListener {
                 _isInWatchlist.value = true
-                // ✅ ส่ง notification เมื่อเพิ่มเข้า watchlist
                 viewModelScope.launch {
                     notificationRepository.sendAddToWatchlistNotification(movie.title)
                 }

@@ -288,12 +288,9 @@ fun WatchListNavHost(
 sealed class Screen(val route: String) {
     object Home        : Screen("home")
     object Search      : Screen("search")
-
-    object GroupDetail : Screen("group_detail")
     object Watchlist   : Screen("watchlist")
     object Profile     : Screen("profile")
     object MovieDetail : Screen("movie_detail")
-    object AllMovies : Screen("all_movies")
     object Notifications : Screen("notifications")
 }
 
