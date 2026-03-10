@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "124969582921",
+    "project_id": "cornmov-9597f",
+    "storage_bucket": "cornmov-9597f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124969582921:android:2fb3be46505a959b6f9a98",
+        "android_client_info": {
+          "package_name": "com.example.cornmov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124969582921-hbmo5ac26100macvn38g293j2s179g7h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cornmov",
+            "certificate_hash": "0b2c29787301ce6c05e91d7d4130876161f66a13"
+          }
+        },
+        {
+          "client_id": "124969582921-hr3qu2de1kemirv7d1ohdtgdfrkhn552.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUjzJmNRMkBCr-noOXbyTdESQU5BQ4WI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124969582921-hr3qu2de1kemirv7d1ohdtgdfrkhn552.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
