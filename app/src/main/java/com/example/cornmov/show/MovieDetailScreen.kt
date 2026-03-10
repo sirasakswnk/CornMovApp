@@ -64,9 +64,9 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cornmov.data.model.CastMember
 import com.example.cornmov.data.model.MovieDetail
+import com.example.cornmov.data.model.Review
+import com.example.cornmov.data.model.ReviewSubmitState
 import com.example.cornmov.data.viewmodel.MovieDetailViewModel
-import com.example.cornmov.data.viewmodel.Review
-import com.example.cornmov.data.viewmodel.ReviewSubmitState
 import com.example.cornmov.data.viewmodel.ReviewViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
